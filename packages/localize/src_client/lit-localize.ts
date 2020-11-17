@@ -305,33 +305,46 @@ const setLocale: ((newLocale: string) => Promise<void>) & {
 /**
  * Make a string or lit-html template localizable.
  *
- * @param id A project-wide unique identifier for this template.
  * @param template A string, a lit-html template, or a function that returns
  * either a string or lit-html template.
- * @param args In the case that `template` is a function, it is invoked with
- * the 3rd and onwards arguments to `msg`.
+ * @param options Optional configuration object with the following properties:
+ *   - id: Optional project-wide unique identifier for this template. If
+ *     omitted, an id will be automatically generated from the template strings.
+ *   - args: In the case that `template` is a function, it will be invoked with
+ *     these arguments.
  */
-export function _msg(id: string, template: string): string;
+export function _msg(template: string, options?: {id?: string}): string;
 
-export function _msg(id: string, template: TemplateResult): TemplateResult;
+export function _msg(
+  template: TemplateResult,
+  options?: {id?: string}
+): TemplateResult;
 
 export function _msg<F extends (...args: any[]) => string>(
-  id: string,
   fn: F,
-  ...params: Parameters<F>
+  options: {id?: string; args: Parameters<F>}
+): string;
+
+export function _msg(
+  fn: () => string,
+  options?: {id?: string; args?: []}
 ): string;
 
 export function _msg<F extends (...args: any[]) => TemplateResult>(
-  id: string,
   fn: F,
-  ...params: Parameters<F>
+  options: {id?: string; args: Parameters<F>}
 ): TemplateResult;
 
 export function _msg(
-  id: string,
+  fn: () => TemplateResult,
+  options?: {id?: string; args?: []}
+): TemplateResult;
+
+export function _msg(
   template: TemplateLike,
-  ...params: any[]
+  options?: {id?: string; args?: any[]}
 ): string | TemplateResult {
+  const id = options?.id ?? generateId(template);
   if (templates) {
     const localized = templates[id];
     if (localized) {
@@ -339,9 +352,32 @@ export function _msg(
     }
   }
   if (typeof template === 'function') {
-    return template(...params);
+    return template(...(options?.args ?? []));
   }
   return template;
+}
+
+const UNIQUE_PLACEHOLDER = '__LIT_LOCALIZE_PLACEHOLDER__';
+
+function generateId(template: TemplateLike): string {
+  if (typeof template === 'function') {
+    const numParams = template.length;
+    const params = Array(numParams).fill(UNIQUE_PLACEHOLDER);
+    const result = template(...params);
+    if (typeof result === 'string') {
+      return digest(result.split(UNIQUE_PLACEHOLDER));
+    }
+    return digest(result.strings);
+  }
+  if (typeof template === 'string') {
+    return digest([template]);
+  }
+  return digest(template.strings);
+}
+
+function digest(strings: TemplateStringsArray | string[]): string {
+  // TODO(aomarks) Hash.
+  return strings.join('`');
 }
 
 export const msg: typeof _msg & {_LIT_LOCALIZE_MSG_?: never} = _msg;
