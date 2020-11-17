@@ -9,7 +9,7 @@
  * rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import * as crypto from 'crypto';
+//import * as crypto from 'crypto';
 import * as ts from 'typescript';
 import * as parse5 from 'parse5';
 import {ProgramMessage, Placeholder, Message} from './messages';
@@ -186,14 +186,15 @@ function extractOptions(
 
     if (name === 'id') {
       if (
-        !ts.isStringLiteral(property.initializer) &&
-        !ts.isNoSubstitutionTemplateLiteral(property.initializer)
+        (!ts.isStringLiteral(property.initializer) &&
+          !ts.isNoSubstitutionTemplateLiteral(property.initializer)) ||
+        property.initializer.text.trim() === ''
       ) {
         return {
           error: createDiagnostic(
             file,
             property.initializer,
-            `Options id property must be a string literal`
+            `Options id property must be a non-empty string literal`
           ),
         };
       }
@@ -292,18 +293,21 @@ function extractTemplate(
 }
 
 // TODO(aomarks) Pick a delimiter;
-const DELIMITER = `'`;
+//const _DELIMITER = `'`;
 
 /**
  * TODO(aomarks) description
  */
-function generateId(contents: Array<string | Placeholder>): string {
+function generateId(_contents: Array<string | Placeholder>): string {
+  /*
   const hash = crypto.createHash('sha1');
   hash.update(
     contents.filter((content) => typeof content === 'string').join(DELIMITER),
     'utf8'
   );
   return hash.digest('hex');
+  */
+  return 'HASH';
 }
 
 /**
