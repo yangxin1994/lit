@@ -34,5 +34,14 @@
       <source>Hello <ph id="0">&lt;b>&lt;!-- comment --></ph>World!<ph id="1">&lt;/b></ph></source>
       <target>Hola <ph id="0">&lt;b>&lt;!-- comment --></ph>Mundo!<ph id="1">&lt;/b></ph></target>
     </trans-unit>
+    <trans-unit id="2ef7bde608ce5404e97d5f042f95f89f1c232871">
+      <source>Hola Mundo!</source>
+    </trans-unit>
+    <trans-unit id="ec9363251079b8d4e90ef45dbee061ed3832bc1f">
+      <source>Hola <ph id="0">&lt;b>&lt;i></ph>Mundo!<ph id="1">&lt;/i>&lt;/b></ph></source>
+    </trans-unit>
+    <trans-unit id="f82ed8f9eb0757dcc1350b71bfeb1a74e9b434af">
+      <source>Hola <ph id="0">${name}</ph>!</source>
+    </trans-unit>
   </body>
 </file>

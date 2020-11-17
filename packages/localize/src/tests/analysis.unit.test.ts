@@ -93,7 +93,7 @@ test('string message: auto ID', (t) => {
   `;
   checkAnalysis(t, src, [
     {
-      name: 'HASH',
+      name: '0a4d55a8d778e5022fab701977c5d840bbc486d0',
       contents: ['Hello World'],
     },
   ]);
@@ -154,7 +154,7 @@ test('parameterized string message: auto ID', (t) => {
   `;
   checkAnalysis(t, src, [
     {
-      name: 'HASH',
+      name: '9646ba13a4e8eabeca4f5259bfd7da41d368a1a6',
       contents: ['Hello ', {untranslatable: '${name}'}],
       params: ['name'],
     },

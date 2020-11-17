@@ -9,7 +9,7 @@
  * rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-//import * as crypto from 'crypto';
+import * as crypto from 'crypto';
 import * as ts from 'typescript';
 import * as parse5 from 'parse5';
 import {ProgramMessage, Placeholder, Message} from './messages';
@@ -297,21 +297,18 @@ export function extractTemplate(
 }
 
 // TODO(aomarks) Pick a delimiter;
-//const _DELIMITER = `'`;
+const DELIMITER = `'`;
 
 /**
  * TODO(aomarks) description
  */
-export function generateMsgId(_contents: Array<string | Placeholder>): string {
-  /*
+export function generateMsgId(contents: Array<string | Placeholder>): string {
   const hash = crypto.createHash('sha1');
   hash.update(
     contents.filter((content) => typeof content === 'string').join(DELIMITER),
     'utf8'
   );
   return hash.digest('hex');
-  */
-  return 'HASH';
 }
 
 /**
