@@ -73,10 +73,10 @@ test('irrelevant code', (t) => {
   checkAnalysis(t, src, []);
 });
 
-test('string message', (t) => {
+test.only('string message', (t) => {
   const src = `
     import {msg} from './lit-localize.js';
-    msg('greeting', 'Hello World');
+    msg('Hello World', {id: 'greeting'});
   `;
   checkAnalysis(t, src, [
     {
@@ -86,10 +86,23 @@ test('string message', (t) => {
   ]);
 });
 
+test.only('string message: auto ID', (t) => {
+  const src = `
+    import {msg} from './lit-localize.js';
+    msg('Hello World');
+  `;
+  checkAnalysis(t, src, [
+    {
+      name: 'HASH',
+      contents: ['Hello World'],
+    },
+  ]);
+});
+
 test('HTML message', (t) => {
   const src = `
     import {msg} from './lit-localize.js';
-    msg('greeting', html\`<b>Hello World</b>\`);
+    msg(html\`<b>Hello World</b>\`, {id: 'greeting'});
   `;
   checkAnalysis(t, src, [
     {
@@ -120,14 +133,28 @@ test('HTML message with comment', (t) => {
   ]);
 });
 
-test('parameterized string message', (t) => {
+test.only('parameterized string message', (t) => {
   const src = `
     import {msg} from './lit-localize.js';
-    msg('greeting', (name: string) => \`Hello \${name}\`, "friend");
+    msg((name: string) => \`Hello \${name}\`, {id: 'greeting', args: ["friend"]});
   `;
   checkAnalysis(t, src, [
     {
       name: 'greeting',
+      contents: ['Hello ', {untranslatable: '${name}'}],
+      params: ['name'],
+    },
+  ]);
+});
+
+test.only('parameterized string message: auto ID', (t) => {
+  const src = `
+    import {msg} from './lit-localize.js';
+    msg((name: string) => \`Hello \${name}\`);
+  `;
+  checkAnalysis(t, src, [
+    {
+      name: 'HASH',
       contents: ['Hello ', {untranslatable: '${name}'}],
       params: ['name'],
     },

@@ -15,12 +15,12 @@ npx chokidar "src/config.ts" -c "npm run generate-json-schema" &
 # https://github.com/avajs/ava/issues/2040 is marked fixed, it seems to still be
 # occuring. `ava --watch` also wants to watch every file in the repo except for
 # those we opt-out, whereas opt-in is a little easier to manage.
-npx chokidar \
-  "lib/**/*.js" \
-  "config.schema.json" \
-  "testdata/*/input/**/*" \
-  "testdata/*/goldens/" \
-  "ava.config.js" \
-  -c "ava; npm run test:check-tsc; npm run test:check-eslint" &
+#npx chokidar \
+#  "lib/**/*.js" \
+#  "config.schema.json" \
+#  "testdata/*/input/**/*" \
+#  "testdata/*/goldens/" \
+#  "ava.config.js" \
+#  -c "ava; npm run test:check-tsc; npm run test:check-eslint" &
 
 wait
