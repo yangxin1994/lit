@@ -97,7 +97,7 @@ test('unchanged html', (t) => {
 });
 
 test('msg(string)', (t) => {
-  checkTransform(t, 'msg("foo", "Hello World");', '"Hello World";');
+  checkTransform(t, 'msg("Hello World", {id: "foo"});', '"Hello World";');
 });
 
 test('msg(string) translated', (t) => {

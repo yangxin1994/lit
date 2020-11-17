@@ -117,7 +117,7 @@ function extractMsg(
   }
   const options = optionsResult.result;
 
-  const name = options.id ?? generateId(contents);
+  const name = options.id ?? generateMsgId(contents);
 
   return {
     result: {
@@ -135,7 +135,7 @@ function extractMsg(
 /**
  * TODO(aomarks)
  */
-function extractOptions(
+export function extractOptions(
   node: ts.Node | undefined,
   file: ts.SourceFile
 ): ResultOrError<
@@ -227,17 +227,20 @@ function extractOptions(
 /**
  * TODO(aomarks) description
  */
-function extractTemplate(
+export function extractTemplate(
   templateArg: ts.Node,
   file: ts.SourceFile
 ): ResultOrError<
-  Pick<ProgramMessage, 'contents' | 'params' | 'isLitTemplate'>,
+  Pick<ProgramMessage, 'contents' | 'params' | 'isLitTemplate'> & {
+    template: ts.TemplateLiteral | ts.StringLiteral;
+  },
   ts.DiagnosticWithLocation
 > {
   if (isStaticString(templateArg)) {
     // E.g. 'Hello World'
     return {
       result: {
+        template: templateArg,
         contents: [templateArg.text],
         isLitTemplate: false,
       },
@@ -249,6 +252,7 @@ function extractTemplate(
       // E.g. html`Hello <b>World</b>`
       return {
         result: {
+          template: templateArg.template,
           contents: combineAdjacentPlaceholders(
             replaceHtmlWithPlaceholders(templateArg.template.text)
           ),
@@ -298,7 +302,7 @@ function extractTemplate(
 /**
  * TODO(aomarks) description
  */
-function generateId(_contents: Array<string | Placeholder>): string {
+export function generateMsgId(_contents: Array<string | Placeholder>): string {
   /*
   const hash = crypto.createHash('sha1');
   hash.update(
@@ -319,7 +323,9 @@ function functionTemplate(
   fn: ts.ArrowFunction,
   file: ts.SourceFile
 ): ResultOrError<
-  Pick<ProgramMessage, 'contents' | 'params' | 'isLitTemplate'>,
+  Pick<ProgramMessage, 'contents' | 'params' | 'isLitTemplate'> & {
+    template: ts.TemplateLiteral | ts.StringLiteral;
+  },
   ts.DiagnosticWithLocation
 > {
   if (fn.parameters.length === 0) {
@@ -397,6 +403,7 @@ function functionTemplate(
       );
   return {
     result: {
+      template,
       contents: combineAdjacentPlaceholders(contents),
       params,
       isLitTemplate: isLit,
