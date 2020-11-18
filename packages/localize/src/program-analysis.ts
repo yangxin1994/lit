@@ -296,19 +296,32 @@ export function extractTemplate(
   };
 }
 
-// TODO(aomarks) Pick a delimiter;
-const DELIMITER = `'`;
+/**
+ * Delimiter used between each string component of a hashed template. Used to
+ * ensure that e.g. "foobar" and "foo${baz}bar" don't hash to the same value.
+ *
+ * This is the "record separator" ASCII character.
+ */
+const HASH_DELIMITER = String.fromCharCode(30);
 
 /**
  * TODO(aomarks) description
+ *
+ * "foo`bar" => foo`bar
+ * `foo${x}bar` => foo`bar
+ * `foo\`${x}bar` => foo\``bar
  */
 export function generateMsgId(contents: Array<string | Placeholder>): string {
-  const hash = crypto.createHash('sha1');
-  hash.update(
-    contents.filter((content) => typeof content === 'string').join(DELIMITER),
-    'utf8'
-  );
-  return hash.digest('hex');
+  const strings = contents.filter((c) => typeof c === 'string') as string[];
+  for (const s of strings) {
+    if (s.includes(HASH_DELIMITER)) {
+      throw new Error('String cannot contain hash delimiter');
+    }
+  }
+  return crypto
+    .createHash('sha1')
+    .update(strings.join(HASH_DELIMITER))
+    .digest('hex');
 }
 
 /**
