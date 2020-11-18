@@ -33,14 +33,14 @@ Wrap your template with the `msg` function to make it localizable:
 ```typescript
 import {html} from 'lit-html';
 import {msg} from '@lit/localize';
-render(msg('greeting', html`Hello <b>World</b>!`), document.body);
+render(msg(html`Hello <b>World</b>!`), document.body);
 ```
 
 Run `lit-localize` to extract all localizable templates and generate an XLIFF
 file, a format which is supported by many localization tools and services:
 
 ```xml
-<trans-unit id="greeting">
+<trans-unit id="TODOHASH">
   <source>Hello <ph id="0">&lt;b></ph>World<ph id="1">&lt;/b></ph>!</source>
   <!-- target tag added by your localization process -->
   <target>Hola <ph id="0">&lt;b></ph>Mundo<ph id="1">&lt;/b></ph>!</target>
@@ -129,10 +129,7 @@ lit-localize supports two output modes: _transform_ and _runtime_.
    import {html, render} from 'lit-html';
    import {msg} from '@lit/localize';
 
-   render(
-     html`<p>${msg('greeting', html`Hello <b>World</b>!`)}</p>`,
-     document.body
-   );
+   render(html`<p>${msg(html`Hello <b>World</b>!`)}</p>`, document.body);
    ```
 
 4. Make a JSON config file at the root of your project called
@@ -168,7 +165,7 @@ lit-localize supports two output modes: _transform_ and _runtime_.
    into `<ph>` tags.
 
    ```xml
-   <trans-unit id="greeting">
+   <trans-unit id="TODOHASH">
      <source>Hello <ph id="0">&lt;b></ph>World<ph id="1">&lt;/b></ph>!</source>
    </trans-unit>
    ```
@@ -178,7 +175,7 @@ lit-localize supports two output modes: _transform_ and _runtime_.
    this tag by feeding it this XLIFF file.
 
    ```xml
-   <trans-unit id="greeting">
+   <trans-unit id="TODOHASH">
      <source>Hello <ph id="0">&lt;b></ph>World<ph id="1">&lt;/b></ph>!</source>
      <target>Hola <ph id="0">&lt;b></ph>Mundo<ph id="1">&lt;/b></ph>!</target>
    </trans-unit>
@@ -217,10 +214,10 @@ The `@lit/localize` module exports the following functions:
 > code. Casting a lit-localize function to a type that does not include its
 > annotation will prevent lit-localize from being able to extract and transform
 > templates from your application. For example, a cast like
-> `(msg as any)("greeting", "Hello")` will not be identified. It is safe to
-> re-assign lit-localize functions or pass them as parameters, as long as the
-> distinctive type signature is preserved. If needed, you can reference each
-> function's distinctive type with e.g. `typeof msg`.
+> `(msg as any)("Hello")` will not be identified. It is safe to re-assign
+> lit-localize functions or pass them as parameters, as long as the distinctive
+> type signature is preserved. If needed, you can reference each function's
+> distinctive type with e.g. `typeof msg`.
 
 ### `configureLocalization(configuration)`
 
@@ -324,18 +321,20 @@ promise resolves.
 Throws if the given locale is not contained by the configured `sourceLocale` or
 `targetLocales`.
 
-### `msg(id: string, template, ...args) => string|TemplateResult`
+### `msg(template: string|TemplateResult|Function, options: {id?: string, args?: any[]}) => string|TemplateResult`
 
 Make a string or lit-html template localizable.
 
-The `id` parameter is a project-wide unique identifier for this template.
+The `id` parameter is an optional project-wide unique identifier for this
+template. If omitted, an id will be automatically generated from the template
+strings.
 
 The `template` parameter can have any of these types:
 
 - A plain string with no placeholders:
 
   ```typescript
-  msg('greeting', 'Hello World!');
+  msg('Hello World!');
   ```
 
 - A lit-html
@@ -343,7 +342,7 @@ The `template` parameter can have any of these types:
   that may contain embedded HTML:
 
   ```typescript
-  msg('greeting', html`Hello <b>World</b>!`);
+  msg(html`Hello <b>World</b>!`);
   ```
 
 - A function that returns a [template
@@ -353,7 +352,7 @@ The `template` parameter can have any of these types:
   parameters to `msg`.
 
   ```typescript
-  msg('greeting', (name) => `Hello ${name}!`, getUsername());
+  msg((name) => `Hello ${name}!`, {args: [getUsername()]});
   ```
 
 - A function that returns a lit-html
@@ -363,7 +362,7 @@ The `template` parameter can have any of these types:
   and onwards parameters to `msg`:
 
   ```typescript
-  msg('greeting', (name) => html`Hello <b>${name}</b>!`, getUsername());
+  msg((name) => html`Hello <b>${name}</b>!`, {args: [getUsername()]});
   ```
 
 In transform mode, calls to this function are replaced with the static localized
@@ -465,7 +464,7 @@ class MyElement extends Localized(LitElement) {
   render() {
     // Whenever setLocale() is called, and templates for that locale have
     // finished loading, this render() function will be re-invoked.
-    return html`<p>${msg('greeting', html`Hello <b>World!</b>`)}</p>`;
+    return html`<p>${msg(html`Hello <b>World!</b>`)}</p>`;
   }
 }
 ```
