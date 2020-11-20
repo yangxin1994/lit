@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<script type="module">
+  import {render, html} from 'lit-html';
+
+  (async () => {
+    for (let i = 0; i < 100; i++) {
+      const div = document.createElement('div');
+      div.id = `d${i}`;
+      document.body.append(div);
+    }
+
+    performance.mark('render-start');
+
+    for (let i = 0; i < 100; i++) {
+      render(html`Hello <b>0</b>!`, document.getElementById('d0'));
+      render(html`Hello <b>1</b>!`, document.getElementById('d1'));
+      render(html`Hello <b>2</b>!`, document.getElementById('d2'));
+      render(html`Hello <b>3</b>!`, document.getElementById('d3'));
+      render(html`Hello <b>4</b>!`, document.getElementById('d4'));
+      render(html`Hello <b>5</b>!`, document.getElementById('d5'));
+      render(html`Hello <b>6</b>!`, document.getElementById('d6'));
+      render(html`Hello <b>7</b>!`, document.getElementById('d7'));
+      render(html`Hello <b>8</b>!`, document.getElementById('d8'));
+      render(html`Hello <b>9</b>!`, document.getElementById('d9'));
+      render(html`Hello <b>10</b>!`, document.getElementById('d10'));
+      render(html`Hello <b>11</b>!`, document.getElementById('d11'));
+      render(html`Hello <b>12</b>!`, document.getElementById('d12'));
+      render(html`Hello <b>13</b>!`, document.getElementById('d13'));
+      render(html`Hello <b>14</b>!`, document.getElementById('d14'));
+      render(html`Hello <b>15</b>!`, document.getElementById('d15'));
+      render(html`Hello <b>16</b>!`, document.getElementById('d16'));
+      render(html`Hello <b>17</b>!`, document.getElementById('d17'));
+      render(html`Hello <b>18</b>!`, document.getElementById('d18'));
+      render(html`Hello <b>19</b>!`, document.getElementById('d19'));
+      render(html`Hello <b>20</b>!`, document.getElementById('d20'));
+      render(html`Hello <b>21</b>!`, document.getElementById('d21'));
+      render(html`Hello <b>22</b>!`, document.getElementById('d22'));
+      render(html`Hello <b>23</b>!`, document.getElementById('d23'));
+      render(html`Hello <b>24</b>!`, document.getElementById('d24'));
+      render(html`Hello <b>25</b>!`, document.getElementById('d25'));
+      render(html`Hello <b>26</b>!`, document.getElementById('d26'));
+      render(html`Hello <b>27</b>!`, document.getElementById('d27'));
+      render(html`Hello <b>28</b>!`, document.getElementById('d28'));
+      render(html`Hello <b>29</b>!`, document.getElementById('d29'));
+      render(html`Hello <b>30</b>!`, document.getElementById('d30'));
+      render(html`Hello <b>31</b>!`, document.getElementById('d31'));
+      render(html`Hello <b>32</b>!`, document.getElementById('d32'));
+      render(html`Hello <b>33</b>!`, document.getElementById('d33'));
+      render(html`Hello <b>34</b>!`, document.getElementById('d34'));
+      render(html`Hello <b>35</b>!`, document.getElementById('d35'));
+      render(html`Hello <b>36</b>!`, document.getElementById('d36'));
+      render(html`Hello <b>37</b>!`, document.getElementById('d37'));
+      render(html`Hello <b>38</b>!`, document.getElementById('d38'));
+      render(html`Hello <b>39</b>!`, document.getElementById('d39'));
+      render(html`Hello <b>40</b>!`, document.getElementById('d40'));
+      render(html`Hello <b>41</b>!`, document.getElementById('d41'));
+      render(html`Hello <b>42</b>!`, document.getElementById('d42'));
+      render(html`Hello <b>43</b>!`, document.getElementById('d43'));
+      render(html`Hello <b>44</b>!`, document.getElementById('d44'));
+      render(html`Hello <b>45</b>!`, document.getElementById('d45'));
+      render(html`Hello <b>46</b>!`, document.getElementById('d46'));
+      render(html`Hello <b>47</b>!`, document.getElementById('d47'));
+      render(html`Hello <b>48</b>!`, document.getElementById('d48'));
+      render(html`Hello <b>49</b>!`, document.getElementById('d49'));
+      render(html`Hello <b>50</b>!`, document.getElementById('d50'));
+      render(html`Hello <b>51</b>!`, document.getElementById('d51'));
+      render(html`Hello <b>52</b>!`, document.getElementById('d52'));
+      render(html`Hello <b>53</b>!`, document.getElementById('d53'));
+      render(html`Hello <b>54</b>!`, document.getElementById('d54'));
+      render(html`Hello <b>55</b>!`, document.getElementById('d55'));
+      render(html`Hello <b>56</b>!`, document.getElementById('d56'));
+      render(html`Hello <b>57</b>!`, document.getElementById('d57'));
+      render(html`Hello <b>58</b>!`, document.getElementById('d58'));
+      render(html`Hello <b>59</b>!`, document.getElementById('d59'));
+      render(html`Hello <b>60</b>!`, document.getElementById('d60'));
+      render(html`Hello <b>61</b>!`, document.getElementById('d61'));
+      render(html`Hello <b>62</b>!`, document.getElementById('d62'));
+      render(html`Hello <b>63</b>!`, document.getElementById('d63'));
+      render(html`Hello <b>64</b>!`, document.getElementById('d64'));
+      render(html`Hello <b>65</b>!`, document.getElementById('d65'));
+      render(html`Hello <b>66</b>!`, document.getElementById('d66'));
+      render(html`Hello <b>67</b>!`, document.getElementById('d67'));
+      render(html`Hello <b>68</b>!`, document.getElementById('d68'));
+      render(html`Hello <b>69</b>!`, document.getElementById('d69'));
+      render(html`Hello <b>70</b>!`, document.getElementById('d70'));
+      render(html`Hello <b>71</b>!`, document.getElementById('d71'));
+      render(html`Hello <b>72</b>!`, document.getElementById('d72'));
+      render(html`Hello <b>73</b>!`, document.getElementById('d73'));
+      render(html`Hello <b>74</b>!`, document.getElementById('d74'));
+      render(html`Hello <b>75</b>!`, document.getElementById('d75'));
+      render(html`Hello <b>76</b>!`, document.getElementById('d76'));
+      render(html`Hello <b>77</b>!`, document.getElementById('d77'));
+      render(html`Hello <b>78</b>!`, document.getElementById('d78'));
+      render(html`Hello <b>79</b>!`, document.getElementById('d79'));
+      render(html`Hello <b>80</b>!`, document.getElementById('d80'));
+      render(html`Hello <b>81</b>!`, document.getElementById('d81'));
+      render(html`Hello <b>82</b>!`, document.getElementById('d82'));
+      render(html`Hello <b>83</b>!`, document.getElementById('d83'));
+      render(html`Hello <b>84</b>!`, document.getElementById('d84'));
+      render(html`Hello <b>85</b>!`, document.getElementById('d85'));
+      render(html`Hello <b>86</b>!`, document.getElementById('d86'));
+      render(html`Hello <b>87</b>!`, document.getElementById('d87'));
+      render(html`Hello <b>88</b>!`, document.getElementById('d88'));
+      render(html`Hello <b>89</b>!`, document.getElementById('d89'));
+      render(html`Hello <b>90</b>!`, document.getElementById('d90'));
+      render(html`Hello <b>91</b>!`, document.getElementById('d91'));
+      render(html`Hello <b>92</b>!`, document.getElementById('d92'));
+      render(html`Hello <b>93</b>!`, document.getElementById('d93'));
+      render(html`Hello <b>94</b>!`, document.getElementById('d94'));
+      render(html`Hello <b>95</b>!`, document.getElementById('d95'));
+      render(html`Hello <b>96</b>!`, document.getElementById('d96'));
+      render(html`Hello <b>97</b>!`, document.getElementById('d97'));
+      render(html`Hello <b>98</b>!`, document.getElementById('d98'));
+      render(html`Hello <b>99</b>!`, document.getElementById('d99'));
+    }
+
+    performance.measure('render', 'render-start');
+  })();
+</script>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<script type="module">
+  import {render, html} from 'lit-html';
+  import {msg, configureLocalization} from '@lit/localize';
+
+  (async () => {
+    const {setLocale} = configureLocalization({
+      sourceLocale: 'en',
+      targetLocales: ['en', 'en2'],
+      loadLocale: (locale) => import(`./${locale}.js`),
+    });
+    await setLocale('en2');
+
+    for (let i = 0; i < 100; i++) {
+      const div = document.createElement('div');
+      div.id = `d${i}`;
+      document.body.append(div);
+    }
+
+    performance.mark('render-start');
+
+    for (let i = 0; i < 100; i++) {
+      render(
+        msg(html`Hello <b>0</b>!`, {id: 'b7123898d4019a01'}),
+        document.getElementById('d0')
+      );
+      render(
+        msg(html`Hello <b>1</b>!`, {id: 'fa0b21aed22e9b28'}),
+        document.getElementById('d1')
+      );
+      render(
+        msg(html`Hello <b>2</b>!`, {id: '9c1d9eebb06a5f57'}),
+        document.getElementById('d2')
+      );
+      render(
+        msg(html`Hello <b>3</b>!`, {id: '83efc6b6d4d7370e'}),
+        document.getElementById('d3')
+      );
+      render(
+        msg(html`Hello <b>4</b>!`, {id: 'c719059e2a1227a5'}),
+        document.getElementById('d4')
+      );
+      render(
+        msg(html`Hello <b>5</b>!`, {id: 'e1662eb2efb1128c'}),
+        document.getElementById('d5')
+      );
+      render(
+        msg(html`Hello <b>6</b>!`, {id: '2eb152860b59c97b'}),
+        document.getElementById('d6')
+      );
+      render(
+        msg(html`Hello <b>7</b>!`, {id: '6b4ad3baf259ae72'}),
+        document.getElementById('d7')
+      );
+      render(
+        msg(html`Hello <b>8</b>!`, {id: '8f2ca2c09bd8c539'}),
+        document.getElementById('d8')
+      );
+      render(
+        msg(html`Hello <b>9</b>!`, {id: 'd65d600807bc6dc0'}),
+        document.getElementById('d9')
+      );
+      render(
+        msg(html`Hello <b>10</b>!`, {id: '4ecf2268617dd1f0'}),
+        document.getElementById('d10')
+      );
+      render(
+        msg(html`Hello <b>11</b>!`, {id: '8819bc7664be29e9'}),
+        document.getElementById('d11')
+      );
+      render(
+        msg(html`Hello <b>12</b>!`, {id: '293973416a6f1bf6'}),
+        document.getElementById('d12')
+      );
+      render(
+        msg(html`Hello <b>13</b>!`, {id: 'edfec95e4493ca7f'}),
+        document.getElementById('d13')
+      );
+      render(
+        msg(html`Hello <b>14</b>!`, {id: '362a6f6c7f00b614'}),
+        document.getElementById('d14')
+      );
+      render(
+        msg(html`Hello <b>15</b>!`, {id: '9b91300d11ae93cd'}),
+        document.getElementById('d15')
+      );
+      render(
+        msg(html`Hello <b>16</b>!`, {id: '91788041d9f2ffda'}),
+        document.getElementById('d16')
+      );
+      render(
+        msg(html`Hello <b>17</b>!`, {id: '563dd65eb417ae63'}),
+        document.getElementById('d17')
+      );
+      render(
+        msg(html`Hello <b>18</b>!`, {id: 'c79826272ecfa0d8'}),
+        document.getElementById('d18')
+      );
+      render(
+        msg(html`Hello <b>19</b>!`, {id: '82ec3d112f310b31'}),
+        document.getElementById('d19')
+      );
+      render(
+        msg(html`Hello <b>20</b>!`, {id: '026f4258ae6de9d1'}),
+        document.getElementById('d20')
+      );
+      render(
+        msg(html`Hello <b>21</b>!`, {id: '471b2b6eae0c7f78'}),
+        document.getElementById('d21')
+      );
+      render(
+        msg(html`Hello <b>22</b>!`, {id: '675d936baa93d427'}),
+        document.getElementById('d22')
+      );
+      render(
+        msg(html`Hello <b>23</b>!`, {id: 'f856928d76b255de'}),
+        document.getElementById('d23')
+      );
+      render(
+        msg(html`Hello <b>24</b>!`, {id: 'e9ca8f5ccbf0cdf5'}),
+        document.getElementById('d24')
+      );
+      render(
+        msg(html`Hello <b>25</b>!`, {id: '2e767872cb8f639c'}),
+        document.getElementById('d25')
+      );
+      render(
+        msg(html`Hello <b>26</b>!`, {id: '51629c44ad38030b'}),
+        document.getElementById('d26')
+      );
+      render(
+        msg(html`Hello <b>27</b>!`, {id: '8aea4627d1a1c002'}),
+        document.getElementById('d27')
+      );
+      render(
+        msg(html`Hello <b>28</b>!`, {id: 'b02aac7f3c44fd89'}),
+        document.getElementById('d28')
+      );
+      render(
+        msg(html`Hello <b>29</b>!`, {id: '75e9969c55555c10'}),
+        document.getElementById('d29')
+      );
+      render(
+        msg(html`Hello <b>30</b>!`, {id: '5fb5e2dbddb699f2'}),
+        document.getElementById('d30')
+      );
+      render(
+        msg(html`Hello <b>31</b>!`, {id: '231c61a6f6b6b4fb'}),
+        document.getElementById('d31')
+      );
+      render(
+        msg(html`Hello <b>32</b>!`, {id: 'd5d13dd3db0dfe0c'}),
+        document.getElementById('d32')
+      );
+      render(
+        msg(html`Hello <b>33</b>!`, {id: 'bb8414bf156f1325'}),
+        document.getElementById('d33')
+      );
+      render(
+        msg(html`Hello <b>34</b>!`, {id: '785ad5d7c034228e'}),
+        document.getElementById('d34')
+      );
+      render(
+        msg(html`Hello <b>35</b>!`, {id: '9088ae0c9bc74ad7'}),
+        document.getElementById('d35')
+      );
+      render(
+        msg(html`Hello <b>36</b>!`, {id: 'ee7630cfbd8b86a8'}),
+        document.getElementById('d36')
+      );
+      render(
+        msg(html`Hello <b>37</b>!`, {id: 'ab7d47b9bf5e8581'}),
+        document.getElementById('d37')
+      );
+      render(
+        msg(html`Hello <b>38</b>!`, {id: '0d71cd026b8e872a'}),
+        document.getElementById('d38')
+      );
+      render(
+        msg(html`Hello <b>39</b>!`, {id: '2849a10c2c4366f3'}),
+        document.getElementById('d39')
+      );
+      render(
+        msg(html`Hello <b>40</b>!`, {id: '6be993c06fa1d07b'}),
+        document.getElementById('d40')
+      );
+      render(
+        msg(html`Hello <b>41</b>!`, {id: 'a88314f556a1b572'}),
+        document.getElementById('d41')
+      );
+      render(
+        msg(html`Hello <b>42</b>!`, {id: '045146d88e5a2ea5'}),
+        document.getElementById('d42')
+      );
+      render(
+        msg(html`Hello <b>43</b>!`, {id: '1e9e6fed53f9198c'}),
+        document.getElementById('d43')
+      );
+      render(
+        msg(html`Hello <b>44</b>!`, {id: 'd955e02614b26657'}),
+        document.getElementById('d44')
+      );
+      render(
+        msg(html`Hello <b>45</b>!`, {id: 'c12807f1391f3e0e'}),
+        document.getElementById('d45')
+      );
+      render(
+        msg(html`Hello <b>46</b>!`, {id: 'f44a79d33849a101'}),
+        document.getElementById('d46')
+      );
+      render(
+        msg(html`Hello <b>47</b>!`, {id: '374362e93676a228'}),
+        document.getElementById('d47')
+      );
+      render(
+        msg(html`Hello <b>48</b>!`, {id: '7116d325a52e8273'}),
+        document.getElementById('d48')
+      );
+      render(
+        msg(html`Hello <b>49</b>!`, {id: '563eff1be479a2aa'}),
+        document.getElementById('d49')
+      );
+      render(
+        msg(html`Hello <b>50</b>!`, {id: '9ea2b3379d7ae63c'}),
+        document.getElementById('d50')
+      );
+      render(
+        msg(html`Hello <b>51</b>!`, {id: '59f6ca219ddc5095'}),
+        document.getElementById('d51')
+      );
+      render(
+        msg(html`Hello <b>52</b>!`, {id: '4fde1a566620bca2'}),
+        document.getElementById('d52')
+      );
+      render(
+        msg(html`Hello <b>53</b>!`, {id: '14a3f073404644ab'}),
+        document.getElementById('d53')
+      );
+      render(
+        msg(html`Hello <b>54</b>!`, {id: 'b49d6a5e9ad64a98'}),
+        document.getElementById('d54')
+      );
+      render(
+        msg(html`Hello <b>55</b>!`, {id: '196c814d83365ff1'}),
+        document.getElementById('d55')
+      );
+      render(
+        msg(html`Hello <b>56</b>!`, {id: '6882cd52489dd87e'}),
+        document.getElementById('d56')
+      );
+      render(
+        msg(html`Hello <b>57</b>!`, {id: 'd6c363740ac19ec7'}),
+        document.getElementById('d57')
+      );
+      render(
+        msg(html`Hello <b>58</b>!`, {id: '232fb3a3eb075fd4'}),
+        document.getElementById('d58')
+      );
+      render(
+        msg(html`Hello <b>59</b>!`, {id: '3211744965b3e88d'}),
+        document.getElementById('d59')
+      );
+      render(
+        msg(html`Hello <b>60</b>!`, {id: '9a5d8aacc8e25fbd'}),
+        document.getElementById('d60')
+      );
+      render(
+        msg(html`Hello <b>61</b>!`, {id: 'b62ef2b6c882ef84'}),
+        document.getElementById('d61')
+      );
+      render(
+        msg(html`Hello <b>62</b>!`, {id: 'fd991bbfc3972253'}),
+        document.getElementById('d62')
+      );
+      render(
+        msg(html`Hello <b>63</b>!`, {id: '8ee5c38fd001cb8a'}),
+        document.getElementById('d63')
+      );
+      render(
+        msg(html`Hello <b>64</b>!`, {id: '59d341d8ae3c6f19'}),
+        document.getElementById('d64')
+      );
+      render(
+        msg(html`Hello <b>65</b>!`, {id: '4b45e9e173dd5420'}),
+        document.getElementById('d65')
+      );
+      render(
+        msg(html`Hello <b>66</b>!`, {id: 'c16b8ec08f8410ef'}),
+        document.getElementById('d66')
+      );
+      render(
+        msg(html`Hello <b>67</b>!`, {id: 'fc520ff575126166'}),
+        document.getElementById('d67')
+      );
+      render(
+        msg(html`Hello <b>68</b>!`, {id: '3eab8b4c7b54c585'}),
+        document.getElementById('d68')
+      );
+      render(
+        msg(html`Hello <b>69</b>!`, {id: '06ef499b00aa36ec'}),
+        document.getElementById('d69')
+      );
+      render(
+        msg(html`Hello <b>70</b>!`, {id: '4123c4a6ef9d715e'}),
+        document.getElementById('d70')
+      );
+      render(
+        msg(html`Hello <b>71</b>!`, {id: 'b02ac585237eefa7'}),
+        document.getElementById('d71')
+      );
+      render(
+        msg(html`Hello <b>72</b>!`, {id: '8fe85d8826f79af8'}),
+        document.getElementById('d72')
+      );
+      render(
+        msg(html`Hello <b>73</b>!`, {id: '4b3c747227590551'}),
+        document.getElementById('d73')
+      );
+      render(
+        msg(html`Hello <b>74</b>!`, {id: 'd3b778414a8cdb82'}),
+        document.getElementById('d74')
+      );
+      render(
+        msg(html`Hello <b>75</b>!`, {id: '9a2fce5e26231e8b'}),
+        document.getElementById('d75')
+      );
+      render(
+        msg(html`Hello <b>76</b>!`, {id: '7743aa8c447a7f1c'}),
+        document.getElementById('d76')
+      );
+      render(
+        msg(html`Hello <b>77</b>!`, {id: '3297c17644dbe975'}),
+        document.getElementById('d77')
+      );
+      render(
+        msg(html`Hello <b>78</b>!`, {id: 'eedf2ecd7d748516'}),
+        document.getElementById('d78')
+      );
+      render(
+        msg(html`Hello <b>79</b>!`, {id: 'b55804ea590ba19f'}),
+        document.getElementById('d79')
+      );
+      render(
+        msg(html`Hello <b>80</b>!`, {id: '8062c0670e6531b7'}),
+        document.getElementById('d80')
+      );
+      render(
+        msg(html`Hello <b>81</b>!`, {id: '658a6c5d4daf786e'}),
+        document.getElementById('d81')
+      );
+      render(
+        msg(html`Hello <b>82</b>!`, {id: '98acde3f4cd9db61'}),
+        document.getElementById('d82')
+      );
+      render(
+        msg(html`Hello <b>83</b>!`, {id: '34ca5c93f42da288'}),
+        document.getElementById('d83')
+      );
+      render(
+        msg(html`Hello <b>84</b>!`, {id: '67be0d6b2be815db'}),
+        document.getElementById('d84')
+      );
+      render(
+        msg(html`Hello <b>85</b>!`, {id: '4f8ff536505480d2'}),
+        document.getElementById('d85')
+      );
+      render(
+        msg(html`Hello <b>86</b>!`, {id: 'ad112719897e8e85'}),
+        document.getElementById('d86')
+      );
+      render(
+        msg(html`Hello <b>87</b>!`, {id: '7554e5680ed3ffec'}),
+        document.getElementById('d87')
+      );
+      render(
+        msg(html`Hello <b>88</b>!`, {id: '2fd12a8d9dadd9ef'}),
+        document.getElementById('d88')
+      );
+      render(
+        msg(html`Hello <b>89</b>!`, {id: '6ab7abc2833c2a66'}),
+        document.getElementById('d89')
+      );
+      render(
+        msg(html`Hello <b>90</b>!`, {id: 'fe4df955352163f8'}),
+        document.getElementById('d90')
+      );
+      render(
+        msg(html`Hello <b>91</b>!`, {id: 'b9a2103f3582ce51'}),
+        document.getElementById('d91')
+      );
+      render(
+        msg(html`Hello <b>92</b>!`, {id: 'af896073fdc73a5e'}),
+        document.getElementById('d92')
+      );
+      render(
+        msg(html`Hello <b>93</b>!`, {id: '1e90615231a8b8a7'}),
+        document.getElementById('d93')
+      );
+      render(
+        msg(html`Hello <b>94</b>!`, {id: 'e5a9465952a4481c'}),
+        document.getElementById('d94')
+      );
+      render(
+        msg(html`Hello <b>95</b>!`, {id: 'a0fd5d435305b275'}),
+        document.getElementById('d95')
+      );
+      render(
+        msg(html`Hello <b>96</b>!`, {id: '421d140e58b6a482'}),
+        document.getElementById('d96')
+      );
+      render(
+        msg(html`Hello <b>97</b>!`, {id: '08956a2b344ce78b'}),
+        document.getElementById('d97')
+      );
+      render(
+        msg(html`Hello <b>98</b>!`, {id: '2d1c6482dc6a4090'}),
+        document.getElementById('d98')
+      );
+      render(
+        msg(html`Hello <b>99</b>!`, {id: '675d7a65c359e209'}),
+        document.getElementById('d99')
+      );
+    }
+
+    performance.measure('render', 'render-start');
+  })();
+</script>
