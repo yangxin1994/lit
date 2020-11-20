@@ -8,6 +8,6 @@
     /* eslint-disable @typescript-eslint/no-explicit-any */
 
     export const templates = {
-      '3c44aff2d5f5ef6b': html`Hola <b>Mundo</b>!`,
+      'af63e54c8601fbd7': html`Hola <b>Mundo</b>!`,
     };
   

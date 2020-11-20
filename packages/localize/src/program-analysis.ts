@@ -117,7 +117,7 @@ function extractMsg(
   }
   const options = optionsResult.result;
 
-  const name = options.id ?? generateMsgId(template);
+  const name = options.id ?? generateMsgId(template, isLitTemplate);
 
   return {
     result: {
@@ -308,7 +308,8 @@ const HASH_DELIMITER = String.fromCharCode(30);
  * TODO(aomarks) description
  */
 export function generateMsgId(
-  template: ts.TemplateLiteral | ts.StringLiteral
+  template: ts.TemplateLiteral | ts.StringLiteral,
+  isLitTemplate: boolean
 ): string {
   const strings = [];
   if (
@@ -328,7 +329,7 @@ export function generateMsgId(
       throw new Error('String cannot contain hash delimiter');
     }
   }
-  return fnva64(strings.join(HASH_DELIMITER));
+  return fnva64(isLitTemplate ? 'h' : 'l' + strings.join(HASH_DELIMITER));
 }
 
 /**

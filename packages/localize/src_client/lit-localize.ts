@@ -367,10 +367,10 @@ function generateId(template: TemplateLike): string {
     template = template(...params);
   }
   if (typeof template === 'string') {
-    return fnva64(template);
+    return fnva64('s' + template);
   }
   // TemplateResult
-  return fnva64(template.strings.join(HASH_DELIMITER));
+  return fnva64('h' + template.strings.join(HASH_DELIMITER));
 }
 
 export const msg: typeof _msg & {_LIT_LOCALIZE_MSG_?: never} = _msg;

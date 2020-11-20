@@ -279,7 +279,7 @@ class Transformer {
       throw new Error(optionsResult.error.toString());
     }
     const options = optionsResult.result;
-    const id = options.id ?? generateMsgId(template);
+    const id = options.id ?? generateMsgId(template, isLitTagged);
 
     // If translations are available, replace the source template from the
     // second argument with the corresponding translation.
