@@ -109,7 +109,7 @@ function extractMsg(
   if (templateResult.error) {
     return templateResult;
   }
-  const {contents, params, isLitTemplate} = templateResult.result;
+  const {contents, template, params, isLitTemplate} = templateResult.result;
 
   const optionsResult = extractOptions(optionsArg, file);
   if (optionsResult.error) {
@@ -117,7 +117,7 @@ function extractMsg(
   }
   const options = optionsResult.result;
 
-  const name = options.id ?? generateMsgId(contents);
+  const name = options.id ?? generateMsgId(template);
 
   return {
     result: {
@@ -306,13 +306,23 @@ const HASH_DELIMITER = String.fromCharCode(30);
 
 /**
  * TODO(aomarks) description
- *
- * "foo`bar" => foo`bar
- * `foo${x}bar` => foo`bar
- * `foo\`${x}bar` => foo\``bar
  */
-export function generateMsgId(contents: Array<string | Placeholder>): string {
-  const strings = contents.filter((c) => typeof c === 'string') as string[];
+export function generateMsgId(
+  template: ts.TemplateLiteral | ts.StringLiteral
+): string {
+  const strings = [];
+  if (
+    ts.isStringLiteral(template) ||
+    ts.isNoSubstitutionTemplateLiteral(template)
+  ) {
+    strings.push(template.text);
+  } else {
+    // TemplateExpression
+    strings.push(template.head.text);
+    for (const span of template.templateSpans) {
+      strings.push(span.literal.text);
+    }
+  }
   for (const s of strings) {
     if (s.includes(HASH_DELIMITER)) {
       throw new Error('String cannot contain hash delimiter');

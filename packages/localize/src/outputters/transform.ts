@@ -269,7 +269,6 @@ class Transformer {
       throw new Error(templateResult.error.toString());
     }
     const {
-      contents,
       isLitTemplate: isLitTagged,
       params: paramNames,
     } = templateResult.result;
@@ -280,8 +279,7 @@ class Transformer {
       throw new Error(optionsResult.error.toString());
     }
     const options = optionsResult.result;
-
-    const id = options.id ?? generateMsgId(contents);
+    const id = options.id ?? generateMsgId(template);
 
     // If translations are available, replace the source template from the
     // second argument with the corresponding translation.
