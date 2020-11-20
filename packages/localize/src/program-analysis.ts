@@ -13,7 +13,7 @@ import * as ts from 'typescript';
 import * as parse5 from 'parse5';
 import {ProgramMessage, Placeholder, Message} from './messages';
 import {createDiagnostic} from './typescript';
-import {fnva64} from '../fnva64.js';
+import {fnva64} from './fnva64.js';
 
 type ResultOrError<R, E> =
   | {result: R; error?: undefined}
