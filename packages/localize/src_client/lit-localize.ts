@@ -10,6 +10,7 @@
  */
 
 import {TemplateResult} from 'lit-html';
+import {fnva64} from './fnva64.js';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -357,27 +358,19 @@ export function _msg(
   return template;
 }
 
-const UNIQUE_PLACEHOLDER = '__LIT_LOCALIZE_PLACEHOLDER__';
+const HASH_DELIMITER = String.fromCharCode(30);
 
 function generateId(template: TemplateLike): string {
   if (typeof template === 'function') {
     const numParams = template.length;
-    const params = Array(numParams).fill(UNIQUE_PLACEHOLDER);
-    const result = template(...params);
-    if (typeof result === 'string') {
-      return digest(result.split(UNIQUE_PLACEHOLDER));
-    }
-    return digest(result.strings);
+    const params = Array(numParams).fill(HASH_DELIMITER);
+    template = template(...params);
   }
   if (typeof template === 'string') {
-    return digest([template]);
+    return fnva64(template);
   }
-  return digest(template.strings);
-}
-
-function digest(strings: TemplateStringsArray | string[]): string {
-  // TODO(aomarks) Hash.
-  return strings.join('`');
+  // TemplateResult
+  return fnva64(template.strings.join(HASH_DELIMITER));
 }
 
 export const msg: typeof _msg & {_LIT_LOCALIZE_MSG_?: never} = _msg;

@@ -9,11 +9,11 @@
  * rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import * as crypto from 'crypto';
 import * as ts from 'typescript';
 import * as parse5 from 'parse5';
 import {ProgramMessage, Placeholder, Message} from './messages';
 import {createDiagnostic} from './typescript';
+import {fnva64} from '../fnva64.js';
 
 type ResultOrError<R, E> =
   | {result: R; error?: undefined}
@@ -328,10 +328,7 @@ export function generateMsgId(
       throw new Error('String cannot contain hash delimiter');
     }
   }
-  return crypto
-    .createHash('sha1')
-    .update(strings.join(HASH_DELIMITER))
-    .digest('hex');
+  return fnva64(strings.join(HASH_DELIMITER));
 }
 
 /**

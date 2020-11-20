@@ -7,3 +7,4 @@ tests/
 lit-localize.*
 localized-element.*
 examples/*/node_modules/
+/fnva64.*
