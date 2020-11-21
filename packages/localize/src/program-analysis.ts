@@ -107,13 +107,13 @@ function extractMsg(
 
   const templateResult = extractTemplate(templateArg, file);
   if (templateResult.error) {
-    return templateResult;
+    return {error: templateResult.error};
   }
   const {contents, template, params, isLitTemplate} = templateResult.result;
 
   const optionsResult = extractOptions(optionsArg, file);
   if (optionsResult.error) {
-    return optionsResult;
+    return {error: optionsResult.error};
   }
   const options = optionsResult.result;
 
