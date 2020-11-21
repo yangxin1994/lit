@@ -1,20 +1,14 @@
 import * as fs from 'fs';
-import {fnva64} from '../fnva64.js';
-
-const HASH_DELIMITER = String.fromCharCode(30);
-
-function makeId(parts, isLit) {
-  return fnva64((isLit ? 'h:' : 's:') + parts.join(HASH_DELIMITER));
-}
+import {generateMsgId} from '../id-generation.js';
 
 function makeTemplate(i, isHtml) {
   let id, template;
   if (isHtml) {
     template = `html\`Hello <b>${i}</b>!\``;
-    id = makeId([`Hello <b>${i}</b>!`], true);
+    id = generateMsgId([`Hello <b>${i}</b>!`], true);
   } else {
     template = `\`Hello ${i}!\``;
-    id = makeId([`Hello ${i}!`], false);
+    id = generateMsgId([`Hello ${i}!`], false);
   }
   return {id, template};
 }
@@ -71,9 +65,12 @@ ${
 
     for (let i = 0; i < ${numRenders}; i++) {
 ${renderCalls.join('\n')}
+      if (i === 0) {
+        performance.measure('first-render', 'render-start');
+      }
     }
 
-    performance.measure('render', 'render-start');
+    performance.measure('all-renders', 'render-start');
   })();
 </script>
 `;

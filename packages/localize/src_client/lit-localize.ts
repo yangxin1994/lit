@@ -10,7 +10,7 @@
  */
 
 import {TemplateResult} from 'lit-html';
-import {fnva64} from './fnva64.js';
+import {generateMsgId, HASH_DELIMITER} from './id-generation.js';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -358,19 +358,24 @@ export function _msg(
   return template;
 }
 
-const HASH_DELIMITER = String.fromCharCode(30);
+const hashCache = new Map<TemplateStringsArray | string, string>();
 
 function generateId(template: TemplateLike): string {
   if (typeof template === 'function') {
     const numParams = template.length;
+    // Note that by using HASH_DELIMITER as the template parameter here, we can
+    // skip splitting and re-joining when we perform the hash.
     const params = Array(numParams).fill(HASH_DELIMITER);
     template = template(...params);
   }
-  if (typeof template === 'string') {
-    return fnva64('s' + template);
+
+  const strings = typeof template === 'string' ? template : template.strings;
+  let id = hashCache.get(strings);
+  if (id === undefined) {
+    id = generateMsgId(strings, typeof template !== 'string');
+    hashCache.set(strings, id);
   }
-  // TemplateResult
-  return fnva64('h' + template.strings.join(HASH_DELIMITER));
+  return id;
 }
 
 export const msg: typeof _msg & {_LIT_LOCALIZE_MSG_?: never} = _msg;

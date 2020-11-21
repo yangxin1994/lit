@@ -62,6 +62,7 @@ packages/localize/lit-localize.*
 packages/localize/localized-element.*
 packages/localize/examples/*/node_modules/
 packages/localize/fnva64.*
+packages/localize/id-generation.*
 
 packages/tests/node_modules/
 

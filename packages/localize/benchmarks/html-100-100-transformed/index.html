@@ -113,8 +113,11 @@
       render(html`Hello <b>97</b>!`, document.getElementById('d97'));
       render(html`Hello <b>98</b>!`, document.getElementById('d98'));
       render(html`Hello <b>99</b>!`, document.getElementById('d99'));
+      if (i === 0) {
+        performance.measure('first-render', 'render-start');
+      }
     }
 
-    performance.measure('render', 'render-start');
+    performance.measure('all-renders', 'render-start');
   })();
 </script>

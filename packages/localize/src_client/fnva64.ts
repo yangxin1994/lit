@@ -21,16 +21,26 @@
  * SOFTWARE.
  */
 
-// https://github.com/tjwebb/fnv-plus/blob/master/index.js
+// This module is derived from the file:
+// https://github.com/tjwebb/fnv-plus/blob/1e2ce68a07cb7dd4c3c85364f3d8d96c95919474/index.js#L309
+//
+// Changes:
+// - Only the _hash64_1a_fast function is included.
+// - Converted to TypeScript ES module.
+// - var -> let/const
+//
+// TODO(aomarks) If we go with this function, upstream our improvements to
+// https://github.com/tjwebb/fnv-plus/ and include it as a normal dependency.
 
 const hl: string[] = [];
+
 for (let i = 0; i < 256; i++) {
   hl[i] = ((i >> 4) & 15).toString(16) + (i & 15).toString(16);
 }
 
 export function fnva64(str: string): string {
   const l = str.length - 3;
-  let i,
+  let i: number,
     t0 = 0,
     v0 = 0x2325,
     t1 = 0,

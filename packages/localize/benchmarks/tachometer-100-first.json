@@ -13,7 +13,7 @@
       "measurement": [
         {
           "mode": "performance",
-          "entryName": "render"
+          "entryName": "first-render"
         }
       ]
     },
@@ -27,7 +27,7 @@
       "measurement": [
         {
           "mode": "performance",
-          "entryName": "render"
+          "entryName": "first-render"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "measurement": [
         {
           "mode": "performance",
-          "entryName": "render"
+          "entryName": "first-render"
         }
       ]
     }

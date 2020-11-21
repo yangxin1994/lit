@@ -13,7 +13,7 @@ import * as ts from 'typescript';
 import * as parse5 from 'parse5';
 import {ProgramMessage, Placeholder, Message} from './messages';
 import {createDiagnostic} from './typescript';
-import {fnva64} from './fnva64.js';
+import {generateMsgId, HASH_DELIMITER} from './id-generation.js';
 
 type ResultOrError<R, E> =
   | {result: R; error?: undefined}
@@ -117,7 +117,7 @@ function extractMsg(
   }
   const options = optionsResult.result;
 
-  const name = options.id ?? generateMsgId(template, isLitTemplate);
+  const name = options.id ?? generateMsgIdFromAstNode(template, isLitTemplate);
 
   return {
     result: {
@@ -297,19 +297,11 @@ export function extractTemplate(
 }
 
 /**
- * Delimiter used between each string component of a hashed template. Used to
- * ensure that e.g. "foobar" and "foo${baz}bar" don't hash to the same value.
- *
- * This is the "record separator" ASCII character.
- */
-const HASH_DELIMITER = String.fromCharCode(30);
-
-/**
  * TODO(aomarks) description
  */
-export function generateMsgId(
+export function generateMsgIdFromAstNode(
   template: ts.TemplateLiteral | ts.StringLiteral,
-  isLitTemplate: boolean
+  isHtmlTagged: boolean
 ): string {
   const strings = [];
   if (
@@ -326,10 +318,11 @@ export function generateMsgId(
   }
   for (const s of strings) {
     if (s.includes(HASH_DELIMITER)) {
+      // TODO(aomarks) Surface diagnostic
       throw new Error('String cannot contain hash delimiter');
     }
   }
-  return fnva64(isLitTemplate ? 'h' : 'l' + strings.join(HASH_DELIMITER));
+  return generateMsgId(strings, isHtmlTagged);
 }
 
 /**
