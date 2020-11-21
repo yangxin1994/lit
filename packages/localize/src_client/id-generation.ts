@@ -47,20 +47,21 @@ const STRING_PREFIX = 's';
  *
  * The ID is constructed as:
  *
- *   [0]    Version number to annotate this ID generation scheme.
+ *   [0]    Version number indicating this ID generation scheme.
  *   [1]    Kind of template: [h]tml or [s]string.
  *   [2,17] 64-bit FNV-A hash hex digest of the template strings, where each
  *          string is delineated by an ASCII "record separator" character.
  *
  * We choose FNV-A because:
  *
- *   1. It's pretty fast (see table).
- *   2. It's pretty small (see table).
- *   3. We can't use Web Crypto API, because it's asynchronous.
- *   4. We don't require cryptographic security.
+ *   1. It's pretty fast.
+ *   2. It's pretty small (0.29 KiB minified + brotli).
+ *   3. We don't require cryptographic security.
+ *   4. We can't use Web Crypto API (e.g. SHA-1), because it's asynchronous.
  *   5. It should give sufficient collision resistance for any one application.
  *      Worst case, we will always detect collisions during analysis.
- *   6. There was an existing JavaScript implementation.
+ *   6. There was an existing JavaScript implementation that doesn't require BigInt,
+ *      for IE11 compatibility.
  *
  * Comparison of hash functions:
  *
