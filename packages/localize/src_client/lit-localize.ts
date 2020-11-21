@@ -335,8 +335,8 @@ export function _msg(
   template: TemplateLike,
   options?: {id?: string; args?: any[]}
 ): string | TemplateResult {
-  const id = options?.id ?? generateId(template);
   if (templates) {
+    const id = options?.id ?? generateId(template);
     const localized = templates[id];
     if (localized) {
       template = localized;
