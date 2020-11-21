@@ -50,37 +50,19 @@ const STRING_PREFIX = 's';
  *   [0]    Version number indicating this ID generation scheme.
  *   [1]    Kind of template: [h]tml or [s]string.
  *   [2,17] 64-bit FNV-A hash hex digest of the template strings, where each
- *          string is delineated by an ASCII "record separator" character.
+ *          string is UTF-8 encoded and delineated by an ASCII "record separator"
+ *          character.
  *
  * We choose FNV-A because:
  *
- *   1. It's pretty fast.
- *   2. It's pretty small (0.29 KiB minified + brotli).
- *   3. We don't require cryptographic security.
+ *   1. It's pretty fast (e.g. much faster than SHA-1).
+ *   2. It's pretty small (0.41 KiB minified + brotli).
+ *   3. We don't require cryptographic security, and 64 bits should give sufficient
+ *      collision resistance for any one application. Worst case, we will always
+ *      detect collisions during analysis.
  *   4. We can't use Web Crypto API (e.g. SHA-1), because it's asynchronous.
- *   5. It should give sufficient collision resistance for any one application.
- *      Worst case, we will always detect collisions during analysis.
  *   6. There was an existing JavaScript implementation that doesn't require BigInt,
  *      for IE11 compatibility.
- *
- * Comparison of hash functions:
- *
- * Function    | Bits | Hashes/sec | KiB  | Collisions
- * ----------- | ---- | ---------- | ---- | ----------
- * FNV-A   [0] |   64 | 1.48M      | 0.29 | 0
- * FNV-A   [0] |   52 | 1.54M      | 0.30 | 0
- * SHA-1   [1] |  160 | 0.35M      | 0.90 | 0
- * Murmur2 [2] |   32 | 2.57M      | 0.22 | 228
- * Murmur3 [3] |   32 | 2.19M      | 0.32 | 290
- * cyrb53  [4] |   53 | 1.65M      | 0.20 | 0
- * djb2a   [5] |   32 | 1.79M      | 0.10 | 147
- *
- * [0] https://github.com/tjwebb/fnv-plus/blob/1e2ce68a07cb7dd4c3c85364f3d8d96c95919474/index.js#L309
- * [1] https://github.com/emn178/js-sha1/blob/master/src/sha1.js
- * [2] https://github.com/garycourt/murmurhash-js/blob/master/murmurhash2_gc.js
- * [3] https://github.com/garycourt/murmurhash-js/blob/master/murmurhash3_gc.js
- * [4] https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript/52171480#52171480
- * [5] https://github.com/sindresorhus/djb2a/blob/master/index.js
  */
 export function generateMsgId(
   strings: string | string[] | TemplateStringsArray,
