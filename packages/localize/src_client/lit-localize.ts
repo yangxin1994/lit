@@ -326,19 +326,9 @@ export function _msg<F extends (...args: any[]) => string>(
   options: {id?: string; args: Parameters<F>}
 ): string;
 
-export function _msg(
-  fn: () => string,
-  options?: {id?: string; args?: []}
-): string;
-
 export function _msg<F extends (...args: any[]) => TemplateResult>(
   fn: F,
   options: {id?: string; args: Parameters<F>}
-): TemplateResult;
-
-export function _msg(
-  fn: () => TemplateResult,
-  options?: {id?: string; args?: []}
 ): TemplateResult;
 
 export function _msg(
