@@ -32,13 +32,13 @@
   <source>Hello <ph id="0">&lt;b>&lt;!-- comment --></ph>World!<ph id="1">&lt;/b></ph></source>
   <target>Hola <ph id="0">&lt;b>&lt;!-- comment --></ph>Mundo!<ph id="1">&lt;/b></ph></target>
 </trans-unit>
-<trans-unit id="2ef7bde608ce5404e97d5f042f95f89f1c232871">
+<trans-unit id="0s8c0ec8d1fb9e6e32">
   <source>Hello World!</source>
 </trans-unit>
-<trans-unit id="ec9363251079b8d4e90ef45dbee061ed3832bc1f">
+<trans-unit id="0h52ce3be652cc1532">
   <source>Hello <ph id="0">&lt;b>&lt;i></ph>World!<ph id="1">&lt;/i>&lt;/b></ph></source>
 </trans-unit>
-<trans-unit id="f82ed8f9eb0757dcc1350b71bfeb1a74e9b434af">
+<trans-unit id="0s00ad08ebae1e0f74">
   <source>Hello <ph id="0">${name}</ph>!</source>
 </trans-unit>
 </body>

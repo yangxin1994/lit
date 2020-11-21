@@ -19,7 +19,7 @@ export const templates = {
     <i>y</i>
     <b>${x}</b>`,
   comment: html`Hello <b><!-- comment -->World!</b>`,
-  '2ef7bde608ce5404e97d5f042f95f89f1c232871': `Hello World!`,
-  ec9363251079b8d4e90ef45dbee061ed3832bc1f: html`Hello <b><i>World!</i></b>`,
-  f82ed8f9eb0757dcc1350b71bfeb1a74e9b434af: (name: any) => `Hello ${name}!`,
+  '0s8c0ec8d1fb9e6e32': `Hello World!`,
+  '0h52ce3be652cc1532': html`Hello <b><i>World!</i></b>`,
+  '0s00ad08ebae1e0f74': (name: any) => `Hello ${name}!`,
 };
