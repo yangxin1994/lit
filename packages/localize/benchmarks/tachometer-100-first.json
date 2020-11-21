@@ -1,10 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
-  "sampleSize": 100,
+  "sampleSize": 30,
   "timeout": 0,
   "benchmarks": [
     {
-      "name": "100-100-auto",
+      "name": "utf8",
       "url": "html-100-100-auto/index.html",
       "browser": {
         "name": "chrome",
@@ -18,22 +18,24 @@
       ]
     },
     {
-      "name": "100-100-baked",
-      "url": "html-100-100-baked/index.html",
-      "browser": {
-        "name": "chrome",
-        "headless": true
-      },
-      "measurement": [
-        {
-          "mode": "performance",
-          "entryName": "first-render"
+      "name": "utf16",
+      "url": "html-100-100-auto/index.html",
+      "packageVersions": {
+        "label": "utf16",
+        "dependencies": {
+          "@lit/localize": {
+            "kind": "git",
+            "repo": "/home/aomarks/work/lit",
+            "ref": "cdd2140050b03b4d8b8ac8e94a590d7d0f336eaf",
+            "subdir": "packages/localize",
+            "setupCommands": [
+              "npm install",
+              "npm run bootstrap -- --scope=@lit/localize",
+              "npm run build -- --scope=@lit/localize"
+            ]
+          }
         }
-      ]
-    },
-    {
-      "name": "100-100-transformed",
-      "url": "html-100-100-transformed/index.html",
+      },
       "browser": {
         "name": "chrome",
         "headless": true
