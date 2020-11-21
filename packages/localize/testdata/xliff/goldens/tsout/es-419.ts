@@ -7,6 +7,10 @@ import {html} from 'lit-html';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const templates = {
+  '0h3c44aff2d5f5ef6b': html`Hola <b>Mundo</b>!`,
+  '0h82ccc38d4d46eaa9': (name: any) => html`Hola <b>${name}</b>!`,
+  '0s00ad08ebae1e0f74': (name: any) => `Hola ${name}!`,
+  '0s8c0ec8d1fb9e6e32': `Hola Mundo!`,
   comment: html`Hola <b><!-- comment -->Mundo!</b>`,
   lit: html`Hola <b><i>Galaxia!</i></b>`,
   lit_variables_1: (url: any, name: any) =>
@@ -19,7 +23,4 @@ export const templates = {
     <b>${x}</b>
     <i>y</i>
     <b>${x}</b>`,
-  '0s8c0ec8d1fb9e6e32': `Hello World!`,
-  '0h52ce3be652cc1532': html`Hello <b><i>World!</i></b>`,
-  '0s00ad08ebae1e0f74': (name: any) => `Hello ${name}!`,
 };

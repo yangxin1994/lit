@@ -27,6 +27,7 @@ msg(
 msg(html`Hello <b><!-- comment -->World!</b>`, {id: 'comment'});
 
 // Auto IDs
-msg('Hello World!');
-msg(html`Hello <b><i>World!</i></b>`);
-msg((name: string) => `Hello ${name}!`, {args: ['World']});
+msg(`Hello World!`);
+msg((name) => `Hello ${name}!`, {args: ['Friend']});
+msg(html`Hello <b>World</b>!`);
+msg((name) => html`Hello <b>${name}</b>!`, {args: ['Friend']});
