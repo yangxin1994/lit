@@ -485,7 +485,7 @@ export abstract class ReactiveElement
    * @final
    */
   protected static getPropertyOptions(name: PropertyKey) {
-    return this.elementProperties!.get(name) || defaultPropertyDeclaration;
+    return this.elementProperties!.get(name) ?? defaultPropertyDeclaration;
   }
 
   /**
@@ -873,9 +873,9 @@ export abstract class ReactiveElement
     // If we have a property key, perform property update steps.
     if (name !== undefined) {
       options =
-        options ||
+        options ??
         (this.constructor as typeof ReactiveElement).getPropertyOptions(name);
-      const hasChanged = options.hasChanged || notEqual;
+      const hasChanged = options.hasChanged ?? notEqual;
       if (hasChanged(this[name as keyof this], oldValue)) {
         if (!this._$changedProperties.has(name)) {
           this._$changedProperties.set(name, oldValue);
