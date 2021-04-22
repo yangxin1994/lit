@@ -45,7 +45,7 @@ jobs:
 
       - name: Lerna bootstrap
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm run bootstrap
+        run: npx lerna bootstrap --ci
 
       - name: Build
         run: npm run build
