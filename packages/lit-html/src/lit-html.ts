@@ -1212,7 +1212,7 @@ class AttributePart {
     | typeof PROPERTY_PART
     | typeof BOOLEAN_ATTRIBUTE_PART
     | typeof EVENT_PART;
-  readonly element: HTMLElement;
+  readonly element: Element;
   readonly name: string;
   readonly options: RenderOptions | undefined;
 
@@ -1244,7 +1244,7 @@ class AttributePart {
   }
 
   constructor(
-    element: HTMLElement,
+    element: Element,
     name: string,
     strings: ReadonlyArray<string>,
     parent: Disconnectable | undefined,
